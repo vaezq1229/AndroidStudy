@@ -22,12 +22,17 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick(R.id.btn1)
+
+    @OnClick({R.id.btn1, R.id.btn2})
     public void onViewClicked(View view) {
-        switch (view.getId()){
-            case R.id.btn1://自定义view
-                Intent intent = new Intent(this,ListViewActivity.class);
+        switch (view.getId()) {
+            case R.id.btn1:
+                Intent intent = new Intent(this, ListViewActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.btn2:
+                Intent intent1 = new Intent(this, NotificationActivity.class);
+                startActivity(intent1);
                 break;
         }
     }
