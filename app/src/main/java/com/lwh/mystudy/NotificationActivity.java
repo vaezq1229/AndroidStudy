@@ -3,6 +3,8 @@ package com.lwh.mystudy;
 import android.annotation.TargetApi;
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -63,6 +65,8 @@ public class NotificationActivity extends AppCompatActivity {
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void addNotification() {
 
+        PendingIntent intent = PendingIntent.getActivity(this,0,new Intent(this,MainActivity.class), PendingIntent.FLAG_CANCEL_CURRENT);
+
         Notification.Builder builder = new Notification.Builder(this);
         builder.setContentTitle("测试"+mId)
                 .setContentText("测试内容")
@@ -73,6 +77,7 @@ public class NotificationActivity extends AppCompatActivity {
                 .setAutoCancel(true)//点击取消
                 .setWhen(System.currentTimeMillis())
                 .setVisibility(Notification.VISIBILITY_PUBLIC)
+                .setContentIntent(intent)
                 .build();
 
         mNotificationManager.notify(mId,builder.build());
