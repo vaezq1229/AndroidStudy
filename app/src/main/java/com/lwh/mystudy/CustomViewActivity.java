@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.lwh.mystudy.view.GradientView;
+import com.lwh.mystudy.view.StrokeJoinView;
 
 /**
  * 自定义view
@@ -20,6 +21,9 @@ public class CustomViewActivity extends AppCompatActivity {
         switch (getIntent().getStringExtra("type")){
             case Constant.GRADIENT:
                 setContentView(new GradientView(this));
+                break;
+            case Constant.STROKE_JOIN:
+                setContentView(new StrokeJoinView(this));
                 break;
         }
     }
