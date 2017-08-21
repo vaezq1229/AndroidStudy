@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.lwh.mystudy.view.GradientView;
+import com.lwh.mystudy.view.PathEffectView;
 import com.lwh.mystudy.view.StrokeJoinView;
 
 /**
@@ -24,6 +25,9 @@ public class CustomViewActivity extends AppCompatActivity {
                 break;
             case Constant.STROKE_JOIN:
                 setContentView(new StrokeJoinView(this));
+                break;
+            case Constant.PATH_EFFECT:
+                setContentView(new PathEffectView(this));
                 break;
         }
     }
