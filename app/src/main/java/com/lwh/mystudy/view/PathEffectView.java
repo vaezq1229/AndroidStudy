@@ -27,12 +27,14 @@ public class PathEffectView extends View {
     private PathEffect mPathDashPathEffect;//使用一个path来绘制一个虚线
 
     private Paint mPaint;
+    private Paint mPaintText;
 
     private float phase = 0;
 
     private Path mPath;
     private Path mDiscretePath;
     private Path mPathDashPath;
+
 
 
     public PathEffectView(Context context) {
@@ -45,10 +47,16 @@ public class PathEffectView extends View {
 
     public PathEffectView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+
         mPaint =  new Paint();
         mPaint.setColor(Color.RED);
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setStrokeWidth(5);
+
+        mPaintText =  new Paint();
+        mPaintText.setColor(Color.BLACK);
+        mPaintText.setStyle(Paint.Style.FILL);
+        mPaintText.setTextSize(80);
 
         //数组是实线虚线比
         mDashPathEffect = new DashPathEffect(new float[]{10,5},phase);
@@ -60,10 +68,12 @@ public class PathEffectView extends View {
 
         Path  path_triangle = new Path();
         path_triangle.addCircle(0,0,10, Path.Direction.CW);
+        mPathDashPathEffect = new PathDashPathEffect(path_triangle,20,0, PathDashPathEffect.Style.TRANSLATE);
 
 
         mPath = new Path();
         mDiscretePath = new Path();
+        mPathDashPath = new Path();
 
     }
 
@@ -89,5 +99,17 @@ public class PathEffectView extends View {
         mDiscretePath.lineTo(700,600);
         mPaint.setPathEffect(mDiscretePathEffect);
         canvas.drawPath(mDiscretePath,mPaint);
+
+
+        mPathDashPath.moveTo(200,900);
+        mPathDashPath.lineTo(200,1200);
+        mPathDashPath.lineTo(300,1000);
+        mPathDashPath.lineTo(500,1200);
+        mPathDashPath.lineTo(700,1000);
+        mPaint.setPathEffect(mPathDashPathEffect);
+        canvas.drawPath(mPathDashPath,mPaint);
+
+        mPaintText.setShadowLayer(10,0,10,Color.RED);
+        canvas.drawText("Hello , World",200,1400,mPaintText);
     }
 }
