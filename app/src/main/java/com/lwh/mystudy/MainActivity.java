@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity  {
     }
 
 
-    @OnClick({R.id.btn1, R.id.btn2,R.id.btn3})
+    @OnClick({R.id.btn1, R.id.btn2,R.id.btn3,R.id.btn4})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn1:
@@ -53,6 +53,9 @@ public class MainActivity extends AppCompatActivity  {
                 break;
             case R.id.btn3:
                 DownloadActivity.launch(this);
+                break;
+            case R.id.btn4:
+                startActivity(new Intent(this,ConstraintLayoutActivity.class));
                 break;
         }
     }
