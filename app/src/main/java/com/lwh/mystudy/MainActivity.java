@@ -19,6 +19,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RemoteViews;
 
+import com.lwh.mystudy.adapter.SwipeQuickAdapter;
+
 import java.io.File;
 import java.util.List;
 
@@ -40,7 +42,7 @@ public class MainActivity extends AppCompatActivity  {
     }
 
 
-    @OnClick({R.id.btn1, R.id.btn2,R.id.btn3,R.id.btn4})
+    @OnClick({R.id.btn1, R.id.btn2,R.id.btn3,R.id.btn4,R.id.btn5})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn1:
@@ -57,11 +59,14 @@ public class MainActivity extends AppCompatActivity  {
             case R.id.btn4:
                 startActivity(new Intent(this,ConstraintLayoutActivity.class));
                 break;
+            case R.id.btn5:
+                startActivity(new Intent(this,SwipRecycleActivity.class));
+                break;
         }
     }
 
 
 
 
-
 }
+
