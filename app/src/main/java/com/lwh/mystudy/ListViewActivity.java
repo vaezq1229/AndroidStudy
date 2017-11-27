@@ -18,8 +18,8 @@ import butterknife.ButterKnife;
  * Created by ${lwh} on 2017/8/17.
  */
 
-public class ListViewActivity extends AppCompatActivity implements OnItemClickCallBack{
-    String[] data_custom = {Constant.GRADIENT,Constant.STROKE_JOIN,Constant.PATH_EFFECT};
+public class ListViewActivity extends AppCompatActivity implements OnItemClickCallBack {
+    String[] data_custom = {Constant.GRADIENT, Constant.STROKE_JOIN, Constant.PATH_EFFECT};
     @BindView(R.id.recycleView)
     RecyclerView recycleView;
 
@@ -38,6 +38,6 @@ public class ListViewActivity extends AppCompatActivity implements OnItemClickCa
 
     @Override
     public void onItemClick(View view, int position) {
-        CustomViewActivity.launch(this,data_custom[position]);
+        CustomViewActivity.launch(this, data_custom[position]);
     }
 }

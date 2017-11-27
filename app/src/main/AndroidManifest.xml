@@ -28,6 +28,7 @@
         <activity android:name=".DownloadActivity" />
         <activity android:name=".ConstraintLayoutActivity" />
         <activity android:name=".SwipRecycleActivity" />
+        <activity android:name=".RxJavaActivity" />
     </application>
 
 </manifest>

@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity  {
     }
 
 
-    @OnClick({R.id.btn1, R.id.btn2,R.id.btn3,R.id.btn4,R.id.btn5})
+    @OnClick({R.id.btn1, R.id.btn2,R.id.btn3,R.id.btn4,R.id.btn5,R.id.btn6})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn1:
@@ -61,6 +61,9 @@ public class MainActivity extends AppCompatActivity  {
                 break;
             case R.id.btn5:
                 startActivity(new Intent(this,SwipRecycleActivity.class));
+                break;
+            case R.id.btn6:
+                startActivity(new Intent(this,RxJavaActivity.class));
                 break;
         }
     }
