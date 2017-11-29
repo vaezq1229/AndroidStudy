@@ -4,8 +4,11 @@
     <modules>
       <module fileurl="file://D:\Android_project\androidstudy\MyStudy.iml" filepath="D:\Android_project\androidstudy\MyStudy.iml" />
       <module fileurl="file://$PROJECT_DIR$/androidstudy.iml" filepath="$PROJECT_DIR$/androidstudy.iml" />
+      <module fileurl="file://D:\Android_project\androidstudy\androidstudy.iml" filepath="D:\Android_project\androidstudy\androidstudy.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://D:\Android_project\androidstudy\app\app.iml" filepath="D:\Android_project\androidstudy\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
+      <module fileurl="file://D:\Android_project\androidstudy\library\library.iml" filepath="D:\Android_project\androidstudy\library\library.iml" />
     </modules>
   </component>
 </project>
