@@ -29,6 +29,7 @@
         <activity android:name=".ConstraintLayoutActivity" />
         <activity android:name=".SwipRecycleActivity" />
         <activity android:name=".RxJavaActivity" />
+        <activity android:name=".widget.WidgetActivity" />
     </application>
 
 </manifest>

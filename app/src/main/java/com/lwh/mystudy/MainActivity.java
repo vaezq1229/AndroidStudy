@@ -1,33 +1,16 @@
 package com.lwh.mystudy;
 
-import android.Manifest;
-import android.app.DownloadManager;
-import android.app.Notification;
-import android.app.NotificationManager;
 import android.content.Intent;
-import android.database.ContentObserver;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.os.Handler;
-import android.os.Message;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RemoteViews;
 
-import com.lwh.mystudy.adapter.SwipeQuickAdapter;
-
-import java.io.File;
-import java.util.List;
+import com.lwh.mystudy.widget.WidgetActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import pub.devrel.easypermissions.EasyPermissions;
 
 public class MainActivity extends AppCompatActivity  {
 
@@ -42,7 +25,7 @@ public class MainActivity extends AppCompatActivity  {
     }
 
 
-    @OnClick({R.id.btn1, R.id.btn2,R.id.btn3,R.id.btn4,R.id.btn5,R.id.btn6})
+    @OnClick({R.id.btn1, R.id.btn2,R.id.btn3,R.id.btn4,R.id.btn5,R.id.btn6,R.id.btn7})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn1:
@@ -64,6 +47,9 @@ public class MainActivity extends AppCompatActivity  {
                 break;
             case R.id.btn6:
                 startActivity(new Intent(this,RxJavaActivity.class));
+                break;
+            case R.id.btn7:
+                startActivity(new Intent(this,WidgetActivity.class));
                 break;
         }
     }
