@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import com.lwh.mystudy.view.BieChartView;
+import com.lwh.mystudy.view.DrawCircleView;
 import com.lwh.mystudy.view.GradientView;
 import com.lwh.mystudy.view.PathEffectView;
 import com.lwh.mystudy.view.StrokeJoinView;
@@ -28,6 +30,12 @@ public class CustomViewActivity extends AppCompatActivity {
                 break;
             case Constant.PATH_EFFECT:
                 setContentView(new PathEffectView(this));
+                break;
+            case Constant.DRAW_CIRCLE:
+                setContentView(new DrawCircleView(this));
+                break;
+            case Constant.DRAW_BIE:
+                setContentView(new BieChartView(this));
                 break;
         }
     }

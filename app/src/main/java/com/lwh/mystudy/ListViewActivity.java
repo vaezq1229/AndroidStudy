@@ -19,7 +19,7 @@ import butterknife.ButterKnife;
  */
 
 public class ListViewActivity extends AppCompatActivity implements OnItemClickCallBack {
-    String[] data_custom = {Constant.GRADIENT, Constant.STROKE_JOIN, Constant.PATH_EFFECT};
+    String[] data_custom = {Constant.GRADIENT, Constant.STROKE_JOIN, Constant.PATH_EFFECT,Constant.DRAW_CIRCLE,Constant.DRAW_BIE};
     @BindView(R.id.recycleView)
     RecyclerView recycleView;
 
