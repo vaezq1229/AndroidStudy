@@ -2,6 +2,7 @@ package com.lwh.mystudy;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +15,7 @@ import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity  {
 
+
     @BindView(R.id.btn1)
     Button btn1;
     @Override
@@ -25,7 +27,7 @@ public class MainActivity extends AppCompatActivity  {
     }
 
 
-    @OnClick({R.id.btn1, R.id.btn2,R.id.btn3,R.id.btn4,R.id.btn5,R.id.btn6,R.id.btn7})
+    @OnClick({R.id.btn1, R.id.btn2,R.id.btn3,R.id.btn4,R.id.btn5,R.id.btn6,R.id.btn7,R.id.btn8})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn1:
@@ -50,6 +52,9 @@ public class MainActivity extends AppCompatActivity  {
                 break;
             case R.id.btn7:
                 startActivity(new Intent(this,WidgetActivity.class));
+                break;
+            case R.id.btn8:
+                startActivity(new Intent(this,ViewPagerActivity.class));
                 break;
         }
     }

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <CheckBox
+        android:id="@+id/cb_choose"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="10dp"
+        android:paddingRight="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="true"/>
+    <TextView
+        android:id="@+id/tv_title"
+        android:text="123456/123456123456123456123456123456123456"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_marginRight="10dp"
+        app:layout_constraintRight_toLeftOf="@+id/tv_total_amount"
+        app:layout_constraintLeft_toRightOf="@+id/cb_choose"
+        android:layout_width="0dp"
+        android:singleLine="true"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_total_amount"
+        android:text="3,000.00"
+        android:paddingRight="12dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <View
+        android:id="@+id/v_line"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title"
+        app:layout_constraintLeft_toRightOf="@+id/cb_choose"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"/>
+    <TextView
+        android:id="@+id/tv_no"
+        android:text="付款批次: "
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        app:layout_constraintTop_toBottomOf="@+id/v_line"
+        app:layout_constraintLeft_toRightOf="@+id/cb_choose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_no_text"
+        android:text="1"
+        app:layout_constraintLeft_toRightOf="@+id/tv_no"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_need_pay"
+        android:text="应付金额: "
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_no"
+        app:layout_constraintLeft_toRightOf="@+id/cb_choose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_need_pay_text"
+        android:text="30,000,000.00"
+        app:layout_constraintLeft_toRightOf="@+id/tv_no"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_need_pay"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_date"
+        android:text="付款日期: "
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        app:layout_constraintTop_toBottomOf="@+id/v_line"
+        app:layout_constraintLeft_toRightOf="@+id/tv_no_text"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_paid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_date_text"
+        android:text="2017/12/08"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_date"
+        app:layout_constraintLeft_toRightOf="@+id/tv_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_paid"
+        android:text="已付金额: "
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_date"
+        app:layout_constraintLeft_toRightOf="@+id/tv_need_pay_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_paid_text"
+        android:text="200000000000.00"
+        app:layout_constraintLeft_toRightOf="@+id/tv_paid"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_paid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</android.support.constraint.ConstraintLayout>
