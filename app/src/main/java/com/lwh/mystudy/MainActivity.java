@@ -2,11 +2,11 @@ package com.lwh.mystudy;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.lwh.mystudy.viewpagers.ViewPagerActivity;
 import com.lwh.mystudy.widget.WidgetActivity;
 
 import butterknife.BindView;

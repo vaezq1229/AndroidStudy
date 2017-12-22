@@ -1,7 +1,6 @@
-package com.lwh.mystudy.adapter;
+package com.lwh.mystudy.viewpagers;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,10 +35,12 @@ public class MyLoopViewPagerAdapter extends BaseLoopViewPagerAdapter<String> {
         imageView.setLayoutParams(layoutParams);
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         if(position == 0){
-            imageView.setImageResource(imgv_ids.length-1);
+            imageView.setImageResource(imgv_ids[imgv_ids.length-1]);
         }else if(position == imgv_ids.length+1){
             imageView.setImageResource(imgv_ids[0]);
         }else{
+
+
             imageView.setImageResource(imgv_ids[position-1]);
         }
         return imageView;
