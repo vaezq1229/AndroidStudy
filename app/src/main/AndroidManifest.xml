@@ -15,7 +15,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TestActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,6 +31,8 @@
         <activity android:name=".RxJavaActivity" />
         <activity android:name=".widget.WidgetActivity" />
         <activity android:name=".viewpagers.ViewPagerActivity" />
+        <activity android:name=".MyProgressViewActivity" />
+        <activity android:name=".CoordinatorLayoutActivity" />
     </application>
 
 </manifest>

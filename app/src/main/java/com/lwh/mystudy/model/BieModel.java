@@ -11,6 +11,9 @@ public class BieModel {
     private float sweepAngle;
     private int color;
 
+    public BieModel() {
+    }
+
     public BieModel(String name, float sweepAngle, int color) {
         this.name = name;
         this.sweepAngle = sweepAngle;
