@@ -1,5 +1,6 @@
 package com.lwh.mystudy;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -22,6 +23,11 @@ public class ListViewActivity extends AppCompatActivity implements OnItemClickCa
     String[] data_custom = {Constant.GRADIENT, Constant.STROKE_JOIN, Constant.PATH_EFFECT,Constant.DRAW_CIRCLE,Constant.DRAW_BIE};
     @BindView(R.id.recycleView)
     RecyclerView recycleView;
+
+    public static Intent newIntent(Context context) {
+        Intent intent = new Intent(context, ListViewActivity.class);
+        return intent;
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

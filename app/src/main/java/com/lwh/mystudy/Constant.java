@@ -1,7 +1,5 @@
 package com.lwh.mystudy;
 
-import com.lwh.mystudy.view.PathEffectView;
-
 /**
  * Created by ${lwh} on 2017/8/17.
  */

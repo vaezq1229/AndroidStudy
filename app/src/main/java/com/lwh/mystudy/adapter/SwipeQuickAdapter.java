@@ -1,17 +1,13 @@
 package com.lwh.mystudy.adapter;
 
-import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
 import com.lwh.mystudy.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by ${lwh} on 2017/11/24.
