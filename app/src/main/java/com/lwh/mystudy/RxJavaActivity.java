@@ -1,5 +1,6 @@
 package com.lwh.mystudy;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ResolveInfo;
 import android.os.Bundle;
@@ -8,14 +9,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 
+import org.reactivestreams.Subscription;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.BiFunction;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 
 /**
@@ -28,11 +37,48 @@ public class RxJavaActivity extends AppCompatActivity {
 
     private final String TAG = RxJavaActivity.class.getSimpleName();
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
 
+        Observable<Integer> observable = Observable.create(new ObservableOnSubscribe<Integer>() {
+            @Override
+            public void subscribe(ObservableEmitter<Integer> emitter) throws Exception {
+                Log.e(TAG, "Observable thread is : " + Thread.currentThread().getName());
+                Log.e(TAG, "emit 1");
+                emitter.onNext(1);
+            }
+        });
+
+        Consumer<Integer> consumer = new Consumer<Integer>() {
+            @Override
+            public void accept(Integer integer) throws Exception {
+                Log.e(TAG, "consumer + Observer thread is :" + Thread.currentThread().getName());
+                Log.e(TAG, "consumer + onNext: " + integer);
+            }
+        };
+
+
+        observable.subscribeOn(Schedulers.newThread())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnNext(new Consumer<Integer>() {
+                    @Override
+                    public void accept(Integer integer) throws Exception {
+                        Log.e(TAG, "After mainThread  " + Thread.currentThread().getName());
+                    }
+                })
+                .observeOn(Schedulers.io())
+                .doOnNext(new Consumer<Integer>() {
+                    @Override
+                    public void accept(Integer integer) throws Exception {
+                        Log.e(TAG, "After io   " + Thread.currentThread().getName());
+                    }
+                }).subscribe(consumer);
+
+        CompositeDisposable
 //        Observable.create(new ObservableOnSubscribe<Integer>() {
 //            @Override
 //            public void subscribe(ObservableEmitter<Integer> emitter) throws Exception {
@@ -110,22 +156,6 @@ public class RxJavaActivity extends AppCompatActivity {
 //            }
 //        });
 
-//        Observable<Integer> observable = Observable.create(new ObservableOnSubscribe<Integer>() {
-//            @Override
-//            public void subscribe(ObservableEmitter<Integer> emitter) throws Exception {
-//                Log.e(TAG, "Observable thread is : " + Thread.currentThread().getName());
-//                Log.e(TAG, "emit 1");
-//                emitter.onNext(1);
-//            }
-//        });
-//        observable.subscribeOn(Schedulers.newThread())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new Consumer<Integer>() {
-//                    @Override
-//                    public void accept(Integer integer) throws Exception {
-//                        Log.e(TAG,integer + " " + Thread.currentThread().getName() );
-//                    }
-//                });
 
 //        Observable.create(new ObservableOnSubscribe<Integer>() {
 //            @Override
@@ -169,57 +199,72 @@ public class RxJavaActivity extends AppCompatActivity {
 //            }
 //        });
 
-        Observable<Integer> observable1 = Observable.create(new ObservableOnSubscribe<Integer>() {
-            @Override
-            public void subscribe(ObservableEmitter<Integer> e) throws Exception {
-                e.onNext(1);
-                e.onNext(2);
-                e.onNext(3);
-            }
-        });
-
-        Observable<String> observable2 = Observable.create(new ObservableOnSubscribe<String>() {
-            @Override
-            public void subscribe(ObservableEmitter<String> e) throws Exception {
-                e.onNext("observable2+1");
-                e.onNext("observable2+2");
-                e.onNext("observable2+3");
-            }
-        });
-
-        Observable.zip(observable1, observable2, new BiFunction<Integer, String, String>() {
-            @Override
-            public String apply(Integer integer, String s) throws Exception {
-                return integer + s;
-            }
-        }).subscribe(new Observer<String>() {
-            @Override
-            public void onSubscribe(Disposable d) {
-                Log.e(TAG, "onSubscribe");
-            }
-
-            @Override
-            public void onNext(String s) {
-                Log.e(TAG, s);
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                Log.e(TAG, e.toString());
-            }
-
-            @Override
-            public void onComplete() {
-                Log.e(TAG, "onComplete");
-            }
-        });
-        Intent intent = ListViewActivity.newIntent(this);
-        List<ResolveInfo> data = this.getPackageManager().queryIntentActivities(intent,0);
-        for(ResolveInfo info : data){
-        }
+//        Observable<Integer> observable1 = Observable.create(new ObservableOnSubscribe<Integer>() {
+//            @Override
+//            public void subscribe(ObservableEmitter<Integer> e) throws Exception {
+//                e.onNext(1);
+//                e.onNext(2);
+//                e.onNext(3);
+//            }
+//        });
+//
+//        Observable<String> observable2 = Observable.create(new ObservableOnSubscribe<String>() {
+//            @Override
+//            public void subscribe(ObservableEmitter<String> e) throws Exception {
+//                e.onNext("observable2+1");
+//                e.onNext("observable2+2");
+//                e.onNext("observable2+3");
+//            }
+//        });
+//
+//        Observable.zip(observable1, observable2, new BiFunction<Integer, String, String>() {
+//            @Override
+//            public String apply(Integer integer, String s) throws Exception {
+//                return integer + s;
+//            }
+//        }).subscribe(new Observer<String>() {
+//            @Override
+//            public void onSubscribe(Disposable d) {
+//                Log.e(TAG, "onSubscribe");
+//            }
+//
+//            @Override
+//            public void onNext(String s) {
+//                Log.e(TAG, s);
+//            }
+//
+//            @Override
+//            public void onError(Throwable e) {
+//                Log.e(TAG, e.toString());
+//            }
+//
+//            @Override
+//            public void onComplete() {
+//                Log.e(TAG, "onComplete");
+//            }
+//        });
+//        Intent intent = ListViewActivity.newIntent(this);
+//        List<ResolveInfo> data = this.getPackageManager().queryIntentActivities(intent,0);
+//        for(ResolveInfo info : data){
+//        }
 
 
     }
 
+    public Observable getCurrentTemperature() {
+        Integer arr[] = {1, 2, 3, 4, 5};
+        Observable<Integer> observable = Observable.fromArray(arr);
+        return observable;
+    }
 
+    public static void main(String[] args) {
+
+
+
+
+    }
+
+    private static String helloWorld() {
+        return "Hello World";
+    }
 }

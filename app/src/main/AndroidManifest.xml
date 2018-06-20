@@ -33,6 +33,7 @@
         <activity android:name=".viewpagers.ViewPagerActivity" />
         <activity android:name="com.lwh.mystudy.MyProgressViewActivity" />
         <activity android:name="com.lwh.mystudy.CoordinatorLayoutActivity" />
+        <activity android:name=".activity.GetSystemActivity" />
     </application>
 
 </manifest>
