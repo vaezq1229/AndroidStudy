@@ -52,7 +52,7 @@ public class GradientView extends View {
         mPaint.setShader(mShader);
         canvas.drawCircle(200,800,100,mPaint);
 
-        mShader = new RadialGradient(200,400,100, Color.BLUE,Color.RED, Shader.TileMode.CLAMP);
+        mShader = new RadialGradient(200,400,20, Color.BLUE,Color.RED, Shader.TileMode.CLAMP);
         mPaint.setShader(mShader);
         canvas.drawCircle(200,400,100,mPaint);
 

@@ -16,4 +16,8 @@ public class Constant {
 
     public static final String DRAW_BIE = "DRAW_BIE";//画饼状图
 
+    public static final String DRAW_TEXT = "DRAW_TEXT";//画饼状图
+
+
+
 }

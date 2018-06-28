@@ -56,15 +56,16 @@ public class DrawCircleView extends View {
         mPaint.setColor(Color.parseColor("#666666"));
         canvas.drawCircle(100, 950, 100, mPaint);
 
-        RectF rectF = new RectF(300, 300, 800, 800);
+        RectF rectF = new RectF(300, 300, 800, 600);
 
         mPaint2.setColor(Color.parseColor("#FFB6C1"));
-        canvas.drawArc(rectF, 0, -50, true, mPaint2);
+        canvas.drawArc(rectF, -110, 100, true, mPaint2);//扇形
+//        canvas.drawOval(rectF,mPaint2);
 
         mPaint2.setColor(Color.parseColor("#FF00FF"));
         canvas.drawArc(rectF, -50, -130, true, mPaint2);
 
         mPaint2.setColor(Color.parseColor("#4B0082"));
-        canvas.drawArc(rectF, 0, 20, true, mPaint2);
+        canvas.drawArc(rectF, 0, 20, false, mPaint2);
     }
 }

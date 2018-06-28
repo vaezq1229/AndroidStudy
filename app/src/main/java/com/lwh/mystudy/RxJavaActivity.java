@@ -9,12 +9,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 
+import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.BackpressureStrategy;
+import io.reactivex.Flowable;
+import io.reactivex.FlowableEmitter;
+import io.reactivex.FlowableOnSubscribe;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
@@ -24,6 +29,7 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.BiFunction;
 import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Predicate;
 import io.reactivex.schedulers.Schedulers;
 
 
@@ -42,43 +48,212 @@ public class RxJavaActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-        Observable<Integer> observable = Observable.create(new ObservableOnSubscribe<Integer>() {
+        Flowable.create(new FlowableOnSubscribe<Integer>() {
             @Override
-            public void subscribe(ObservableEmitter<Integer> emitter) throws Exception {
-                Log.e(TAG, "Observable thread is : " + Thread.currentThread().getName());
-                Log.e(TAG, "emit 1");
-                emitter.onNext(1);
+            public void subscribe(FlowableEmitter<Integer> emitter) throws Exception {
+               for(int i = 0 ; ; i++){
+                   emitter.onNext(i);
+               }
+
+
             }
-        });
-
-        Consumer<Integer> consumer = new Consumer<Integer>() {
-            @Override
-            public void accept(Integer integer) throws Exception {
-                Log.e(TAG, "consumer + Observer thread is :" + Thread.currentThread().getName());
-                Log.e(TAG, "consumer + onNext: " + integer);
-            }
-        };
-
-
-        observable.subscribeOn(Schedulers.newThread())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnNext(new Consumer<Integer>() {
+        }, BackpressureStrategy.ERROR).subscribe(new Subscriber<Integer>() {
                     @Override
-                    public void accept(Integer integer) throws Exception {
-                        Log.e(TAG, "After mainThread  " + Thread.currentThread().getName());
+                    public void onSubscribe(Subscription s) {
+                        Log.e(TAG, "onSubscribe");
+                        s.request(Long.MAX_VALUE);  //注意这句代码
                     }
-                })
-                .observeOn(Schedulers.io())
-                .doOnNext(new Consumer<Integer>() {
-                    @Override
-                    public void accept(Integer integer) throws Exception {
-                        Log.e(TAG, "After io   " + Thread.currentThread().getName());
-                    }
-                }).subscribe(consumer);
 
-        CompositeDisposable
+                    @Override
+                    public void onNext(Integer integer) {
+                        Log.e(TAG, "onNext: " + integer);
+
+                    }
+
+                    @Override
+                    public void onError(Throwable t) {
+                        Log.e(TAG, "onError: ", t);
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Log.e(TAG, "onComplete");
+                    }
+
+
+                });
+
+
+//        Observable.create(new ObservableOnSubscribe<Integer>() {
+//            @Override
+//            public void subscribe(ObservableEmitter<Integer> e) throws Exception {
+//                for (int i = 0; ; i++) {
+//                    e.onNext(i);
+//                }
+//            }
+//        }).subscribeOn(Schedulers.io()).sample(2, TimeUnit.SECONDS)
+//                .observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<Integer>() {
+//            @Override
+//            public void accept(Integer integer) throws Exception {
+//                Log.e(TAG, integer + "");
+//            }
+//        });
+
+//        Observable.create(new ObservableOnSubscribe<Integer>() {
+//            @Override
+//            public void subscribe(ObservableEmitter<Integer> e) throws Exception {
+//                for(int i = 0 ;;i++){
+//                    e.onNext(i);
+//                }
+//            }
+//        }).subscribeOn(Schedulers.io()).filter(new Predicate<Integer>() {
+//            @Override
+//            public boolean test(Integer integer) throws Exception {
+//                return integer % 10 == 0;
+//            }
+//        }).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<Integer>() {
+//            @Override
+//            public void accept(Integer integer) throws Exception {
+//                Log.e(TAG, integer + "");
+//            }
+//        });
+
+
+//        Observable<Integer> observable1 = Observable.create(new ObservableOnSubscribe<Integer>() {
+//            @Override
+//            public void subscribe(ObservableEmitter<Integer> e) throws Exception {
+//                for (int i = 0; ; i++) {
+//                    e.onNext(i);
+//                }
+//            }
+//        }).subscribeOn(Schedulers.io());
+//
+//        Observable<String> observable2 = Observable.create(new ObservableOnSubscribe<String>() {
+//            @Override
+//            public void subscribe(ObservableEmitter<String> e) throws Exception {
+//                e.onNext("A");
+//            }
+//        }).subscribeOn(Schedulers.io());
+//
+//        Observable.zip(observable1, observable2, new BiFunction<Integer, String, String>() {
+//            @Override
+//            public String apply(Integer integer, String s) throws Exception {
+//                return integer + s;
+//            }
+//        }).subscribeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Consumer<String>() {
+//                    @Override
+//                    public void accept(String s) throws Exception {
+//                        Log.e(TAG,s);
+//                    }
+//                });
+
+
+//        Observable<Integer> observable1 = Observable.create(new ObservableOnSubscribe<Integer>() {
+//            @Override
+//            public void subscribe(ObservableEmitter<Integer> emitter) throws Exception {
+//                Log.e(TAG, "emit 1");
+//                emitter.onNext(1);
+//                Thread.sleep(1000);
+//
+//                Log.e(TAG, "emit 2");
+//                emitter.onNext(2);
+//                Thread.sleep(1000);
+//
+//                Log.e(TAG, "emit 3");
+//                emitter.onNext(3);
+//                Thread.sleep(1000);
+//
+//                Log.e(TAG, "emit 4");
+//                emitter.onNext(4);
+//                Thread.sleep(1000);
+//
+//                Log.e(TAG, "emit complete1");
+//                emitter.onComplete();
+//
+//            }
+//        }).subscribeOn(Schedulers.io());
+//
+//        Observable<String> observable2 = Observable.create(new ObservableOnSubscribe<String>() {
+//            @Override
+//            public void subscribe(ObservableEmitter<String> emitter) throws Exception {
+//                Log.e(TAG, "emit A");
+//                emitter.onNext("A");
+//                Thread.sleep(1000);
+//
+//                Log.e(TAG, "emit B");
+//                emitter.onNext("B");
+//                Thread.sleep(1000);
+//
+//                Log.e(TAG, "emit C");
+//                emitter.onNext("C");
+//                Thread.sleep(1000);
+//
+//                Log.e(TAG, "emit D");
+//                emitter.onNext("D");
+//                Thread.sleep(1000);
+//
+//                Log.e(TAG, "emit complete2");
+//                emitter.onComplete();
+//
+//
+//            }
+//        }).subscribeOn(Schedulers.io());
+//
+//
+//        Observable.zip(observable1, observable2, new BiFunction<Integer, String, String>() {
+//            @Override
+//            public String apply(Integer integer, String s) throws Exception {
+//                return integer + s;
+//            }
+//        }).subscribe(new Consumer<String>() {
+//            @Override
+//            public void accept(String s) throws Exception {
+//                Log.e(TAG, s);
+//            }
+//        }, new Consumer<Throwable>() {
+//            @Override
+//            public void accept(Throwable throwable) throws Exception {
+//                Log.w(TAG, throwable);
+//            }
+//        });
+
+
+//        Observable<Integer> observable = Observable.create(new ObservableOnSubscribe<Integer>() {
+//            @Override
+//            public void subscribe(ObservableEmitter<Integer> emitter) throws Exception {
+//                Log.e(TAG, "Observable thread is : " + Thread.currentThread().getName());
+//                Log.e(TAG, "emit 1");
+//                emitter.onNext(1);
+//            }
+//        });
+//
+//        Consumer<Integer> consumer = new Consumer<Integer>() {
+//            @Override
+//            public void accept(Integer integer) throws Exception {
+//                Log.e(TAG, "consumer + Observer thread is :" + Thread.currentThread().getName());
+//                Log.e(TAG, "consumer + onNext: " + integer);
+//            }
+//        };
+//
+//
+//        observable.subscribeOn(Schedulers.newThread())
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .doOnNext(new Consumer<Integer>() {
+//                    @Override
+//                    public void accept(Integer integer) throws Exception {
+//                        Log.e(TAG, "After mainThread  " + Thread.currentThread().getName());
+//                    }
+//                })
+//                .observeOn(Schedulers.io())
+//                .doOnNext(new Consumer<Integer>() {
+//                    @Override
+//                    public void accept(Integer integer) throws Exception {
+//                        Log.e(TAG, "After io   " + Thread.currentThread().getName());
+//                    }
+//                }).subscribe(consumer);
+
 //        Observable.create(new ObservableOnSubscribe<Integer>() {
 //            @Override
 //            public void subscribe(ObservableEmitter<Integer> emitter) throws Exception {
@@ -258,8 +433,6 @@ public class RxJavaActivity extends AppCompatActivity {
     }
 
     public static void main(String[] args) {
-
-
 
 
     }
