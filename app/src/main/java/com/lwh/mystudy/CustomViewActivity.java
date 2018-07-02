@@ -6,10 +6,12 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import com.lwh.mystudy.view.AnimationView;
 import com.lwh.mystudy.view.BieChartView;
 import com.lwh.mystudy.view.DrawCircleView;
 import com.lwh.mystudy.view.GradientView;
 import com.lwh.mystudy.view.MyBieChartView;
+import com.lwh.mystudy.view.MyClipView;
 import com.lwh.mystudy.view.MyTextView;
 import com.lwh.mystudy.view.PathEffectView;
 import com.lwh.mystudy.view.StrokeJoinView;
@@ -41,6 +43,12 @@ public class CustomViewActivity extends AppCompatActivity {
                 break;
             case Constant.DRAW_TEXT:
                 setContentView(new MyTextView(this));
+                break;
+            case Constant.DRAW_CLIP:
+                setContentView(new MyClipView(this));
+                break;
+                case Constant.DRAW_ANIMATION:
+                setContentView(new AnimationView(this));
                 break;
         }
     }

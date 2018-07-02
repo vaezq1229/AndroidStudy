@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.lwh.mystudy.activity.AnimationActivity;
 import com.lwh.mystudy.activity.GetSystemActivity;
 import com.lwh.mystudy.model.BieModel;
 import com.lwh.mystudy.viewpagers.ViewPagerActivity;
@@ -52,7 +53,8 @@ public class MainActivity extends AppCompatActivity  {
     }
 
 
-    @OnClick({R.id.btn1, R.id.btn2,R.id.btn3,R.id.btn4,R.id.btn5,R.id.btn6,R.id.btn7,R.id.btn8,R.id.btn9,R.id.btn10,R.id.btn11,R.id.btn12,R.id.btn13})
+    @OnClick({R.id.btn1, R.id.btn2,R.id.btn3,R.id.btn4,R.id.btn5,R.id.btn6,R.id.btn7,R.id.btn8
+            ,R.id.btn9,R.id.btn10,R.id.btn11,R.id.btn12,R.id.btn13,R.id.btn14})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn1:
@@ -112,6 +114,9 @@ public class MainActivity extends AppCompatActivity  {
                 break;
             case R.id.btn13:
                 startActivity(GetSystemActivity.newIntent(this));
+                break;
+            case R.id.btn14:
+                startActivity(AnimationActivity.newIntent(this));
                 break;
         }
     }

@@ -18,6 +18,10 @@ public class Constant {
 
     public static final String DRAW_TEXT = "DRAW_TEXT";//画饼状图
 
+    public static final String DRAW_CLIP = "DRAW_CLIP";//裁剪
+
+    public static final String DRAW_ANIMATION = "DRAW_ANIMATION";//动画
+
 
 
 }

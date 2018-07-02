@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+   >
+
+    <ImageView
+        android:id="@+id/icon_angle"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@mipmap/icon_angle" />
+
+
+    <ImageView
+        android:id="@+id/icon_angle2"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@mipmap/icon_angle"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"/>
+
+
+    <ImageView
+        android:id="@+id/icon_angle3"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@mipmap/icon_angle"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:alpha="0"
+        android:scaleX="0"
+        android:scaleY="0"
+       />
+
+    <ImageView
+        android:id="@+id/icon_angle4"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@mipmap/icon_angle"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:alpha="0"
+        android:scaleX="0"
+        android:scaleY="0"
+        />
+
+</LinearLayout>
