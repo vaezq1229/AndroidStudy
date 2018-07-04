@@ -1,14 +1,18 @@
 package com.lwh.mystudy.activity;
 
 import android.animation.Animator;
+import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.animation.AnimationSet;
 import android.view.animation.CycleInterpolator;
+import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 
@@ -32,6 +36,8 @@ public class AnimationActivity extends AppCompatActivity {
     ImageView iconAngle3;
     @BindView(R.id.icon_angle4)
     ImageView iconAngle4;
+    @BindView(R.id.icon_angle5)
+    ImageView iconAngle5;
 
     public static Intent newIntent(Context context) {
         Intent intent = new Intent(context, AnimationActivity.class);
@@ -95,11 +101,22 @@ public class AnimationActivity extends AppCompatActivity {
         iconAngle3.animate().scaleX(1).scaleY(1).alpha(1).setDuration(1000);
 
 
-        /**
-         * AnimationSet
-         */
+        PropertyValuesHolder holder1 = PropertyValuesHolder.ofFloat("scaleX",0f,1f);
+        PropertyValuesHolder holder2 = PropertyValuesHolder.ofFloat("scaleY",0f,1f);
+        PropertyValuesHolder holder3 = PropertyValuesHolder.ofFloat("alpha",0f,1f);
+        ObjectAnimator objectAnimator1 = ObjectAnimator.ofPropertyValuesHolder(iconAngle4,holder1,holder2,holder3);
+        objectAnimator1.setDuration(1000).start();
 
 
+        ObjectAnimator objectAnimator2 = ObjectAnimator.ofFloat(iconAngle5,"translationX",500);
+        objectAnimator2.setInterpolator(new DecelerateInterpolator());
+        ObjectAnimator objectAnimator4 = ObjectAnimator.ofFloat(iconAngle5,"scaleX",0f,1f);
+        ObjectAnimator objectAnimator5 = ObjectAnimator.ofFloat(iconAngle5,"scaleY",0f,1f);
+
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.playSequentially(objectAnimator4,objectAnimator2);
+        animatorSet.setDuration(1000);
+        animatorSet.start();
 
 
     }

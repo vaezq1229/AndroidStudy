@@ -48,40 +48,40 @@ public class RxJavaActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Flowable.create(new FlowableOnSubscribe<Integer>() {
-            @Override
-            public void subscribe(FlowableEmitter<Integer> emitter) throws Exception {
-               for(int i = 0 ; ; i++){
-                   emitter.onNext(i);
-               }
-
-
-            }
-        }, BackpressureStrategy.ERROR).subscribe(new Subscriber<Integer>() {
-                    @Override
-                    public void onSubscribe(Subscription s) {
-                        Log.e(TAG, "onSubscribe");
-                        s.request(Long.MAX_VALUE);  //注意这句代码
-                    }
-
-                    @Override
-                    public void onNext(Integer integer) {
-                        Log.e(TAG, "onNext: " + integer);
-
-                    }
-
-                    @Override
-                    public void onError(Throwable t) {
-                        Log.e(TAG, "onError: ", t);
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        Log.e(TAG, "onComplete");
-                    }
-
-
-                });
+//        Flowable.create(new FlowableOnSubscribe<Integer>() {
+//            @Override
+//            public void subscribe(FlowableEmitter<Integer> emitter) throws Exception {
+//               for(int i = 0 ; ; i++){
+//                   emitter.onNext(i);
+//               }
+//
+//
+//            }
+//        }, BackpressureStrategy.ERROR).subscribe(new Subscriber<Integer>() {
+//                    @Override
+//                    public void onSubscribe(Subscription s) {
+//                        Log.e(TAG, "onSubscribe");
+//                        s.request(Long.MAX_VALUE);  //注意这句代码
+//                    }
+//
+//                    @Override
+//                    public void onNext(Integer integer) {
+//                        Log.e(TAG, "onNext: " + integer);
+//
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable t) {
+//                        Log.e(TAG, "onError: ", t);
+//                    }
+//
+//                    @Override
+//                    public void onComplete() {
+//                        Log.e(TAG, "onComplete");
+//                    }
+//
+//
+//                });
 
 
 //        Observable.create(new ObservableOnSubscribe<Integer>() {
