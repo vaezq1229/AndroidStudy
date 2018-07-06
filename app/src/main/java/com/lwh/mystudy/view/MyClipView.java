@@ -96,7 +96,7 @@ public class MyClipView extends View {
 
         canvas.save();
         canvas.translate(500, 800);
-        canvas.skew(0, 0.5f);
+        canvas.skew(-1, 0);
         canvas.drawBitmap(bitmap, 0, 0, mPaint);
         canvas.restore();
 

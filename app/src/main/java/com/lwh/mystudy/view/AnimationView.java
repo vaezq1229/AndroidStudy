@@ -108,8 +108,10 @@ public class AnimationView extends View {
         Rect rectF1 = new Rect();
 //        int value = (int)(Double.parseDouble(objectAnimator4.getAnimatedValue().toString()));
         int value = ((Float) objectAnimator4.getAnimatedValue()).intValue();
-        mTextPaint.getTextBounds(value + "%", 0, (value + "%").length(), rectF1);
-        canvas.drawText(value + "%", -rectF1.width() / 2, 0, mTextPaint);
+//        mTextPaint.getTextBounds(value + "%", 0, (value + "%").length(), rectF1);
+//        canvas.drawText(value + "%", -rectF1.width() / 2, 0, mTextPaint);
+        mTextPaint.setTextAlign(Paint.Align.CENTER);
+        canvas.drawText(value + "%", 0, 0, mTextPaint);
         canvas.restore();
 
 
